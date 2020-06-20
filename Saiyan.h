@@ -5,10 +5,11 @@ namespace sdds
 {
 	class Saiyan
 	{
-			char m_name[32];
+			char* m_name = nullptr;
 			int m_dob;			// Year the Saiyan was born.
 			int m_power;		// Integer indicating the strength of the Saiyan (>= 0).
 			bool m_super;		// indicates whether Saiyan can evolve
+			int m_level;		// an integer indicating the level of a SS
 
 		/*
 		***Valid Name*** : a string that contains at least one character, but less than 32.
@@ -20,7 +21,7 @@ namespace sdds
 		Saiyan();
 		Saiyan(const char* name, int dob, int power);  // Custom constructor
 		~Saiyan();
-		void set(const char* name, int dob, int power, bool super = false);
+		void set(const char* name, int dob, int power, int level = 0, bool super = false);
 		bool isValid() const;
 		void display() const;
 		bool fight(const Saiyan& other) const;
