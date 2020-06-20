@@ -24,7 +24,7 @@ namespace sdds
 		void set(const char* name, int dob, int power, int level = 0, bool super = false);
 		bool isValid() const;
 		void display() const;
-		bool fight(const Saiyan& other) const;
+		bool fight(Saiyan& other);
 	};
 }
 

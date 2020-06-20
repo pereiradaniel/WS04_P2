@@ -28,11 +28,11 @@ namespace sdds
 	// DESTRUCTOR
 	/////////////
 	Saiyan::~Saiyan() {
-		if (m_name != nullptr)
-		{
-			delete [] m_name;	// Deallocate memory of member.
-			m_name = nullptr;
-		}
+		//if (m_name != nullptr)
+		//{
+		//	delete [] m_name;	// Deallocate memory of member.
+		//	m_name = nullptr;
+		//}
 	};
 	
 	// MULTI-ARGUMENT SET CONSTRUCTOR
@@ -47,7 +47,7 @@ namespace sdds
 			// Deallocate previosly allocated memory for m_name to avoid memory leak:
 			if (m_name != nullptr)
 			{
-				delete [] m_name;
+				// delete m_name; // causing error
 				char* m_name = nullptr;
 			}
 			m_name = new char[strlen(name)];
@@ -94,7 +94,17 @@ namespace sdds
 		cout << endl;
 	};
 
-	bool Saiyan::fight(const Saiyan& other) const {
+	bool Saiyan::fight(Saiyan& other) {
+
+		if (m_super == true)
+		{
+			m_power += (m_power * (.1 * m_level));
+		}
+		if (other.m_super == true)
+		{
+			other.m_power += (other.m_power * (.1 * other.m_level));
+		}
+
 		bool value = m_power > other.m_power;
 		return value;
 	};
