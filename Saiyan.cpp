@@ -7,29 +7,28 @@ using namespace std;
 
 namespace sdds
 {
-	Saiyan::Saiyan() {
+
+	// CONSTRUCTORS:
+	Saiyan::Saiyan()
+	{
 		// default state
 		m_name = nullptr;	// Dynamic allocation:  set to nullptr!
 		m_dob = 0;
-		m_power = -1;
+		m_power = 0;
 		m_super = false;
 		m_level = 0;
 	};
 	
-	Saiyan::Saiyan(const char* name, int dob, int power) {
+	Saiyan::Saiyan(const char* name, int dob, int power)
+	{
 		set(name, dob, power);
 	};
 
-	Saiyan::~Saiyan() {
-		if (m_name != nullptr)
-		{
-			delete[] m_name;	// Deallocate memory of member.
-			m_name = nullptr;
-		}
-	};
-
-	void Saiyan::set(const char* name, int dob, int power, int level, bool super) {
-		if (name == nullptr || strlen(name) == 0 || dob > 2020 || power < 0)
+	// MEMBER FUNCTIONS:
+	void Saiyan::set(const char* name, int dob, int power, int level, bool super)
+	{
+		// Check if arguments are valid:
+		if (name == nullptr || strlen(name) <= 0 || dob > 2020 || power <= 0)
 		{
 			*this = Saiyan();	// Calls constructor that creates default.
 		}
@@ -50,13 +49,14 @@ namespace sdds
 		}
 	};
 	
-	bool Saiyan::isValid() const {
-		// validate Saiyan
+	bool Saiyan::isValid() const
+	{
 		bool valid_state = m_name != nullptr && strlen(m_name) > 0 && m_dob < 2020 && m_power > 0;
 		return valid_state;
 	};
 
-	void Saiyan::display() const {
+	void Saiyan::display() const
+	{
 		if (isValid())
 		{
 			cout << m_name << endl;
@@ -85,18 +85,30 @@ namespace sdds
 		cout << endl;
 	};
 
-	bool Saiyan::fight(Saiyan& other) {
+	bool Saiyan::fight(Saiyan& other)
+	{
 
 		if (m_super == true)
 		{
-			m_power += m_power * (.1 * m_level);
+			m_power += int(m_power * (.1 * m_level));
 		}
 		if (other.m_super == true)
 		{
-			other.m_power += other.m_power * (.1 * other.m_level);
+			other.m_power += int(other.m_power * (.1 * other.m_level));
 		}
 
 		bool value = m_power > other.m_power;
 		return value;
 	};
+
+	// DESTRUCTOR:
+	Saiyan::~Saiyan()
+	{
+		if (m_name != nullptr)
+		{
+			delete[] m_name;	// Deallocate memory of member.
+			m_name = nullptr;
+		}
+	};
+
 }
