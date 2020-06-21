@@ -7,18 +7,12 @@ using namespace std;
 
 namespace sdds
 {
-	// CONSTRUCTORS:
 	Saiyan::Saiyan()
 	{
-		// default state
-		//m_name = nullptr;	// Dynamic allocation:  set to nullptr!
-		//m_dob = 0;
-		//m_power = 0;
-		//m_super = false;
-		//m_level = 0;
 	}
 	
-	Saiyan::Saiyan(const char* name, int dob, int power) {
+	Saiyan::Saiyan(const char* name, int dob, int power)
+	{
 		set(name, dob, power);
 	}
 
@@ -101,7 +95,6 @@ namespace sdds
 		return value;
 	}
 
-	// DESTRUCTOR:
 	Saiyan::~Saiyan()
 	{
 		if (m_name != nullptr)
