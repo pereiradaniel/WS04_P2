@@ -7,7 +7,6 @@ using namespace std;
 
 namespace sdds
 {
-
 	// CONSTRUCTORS:
 	Saiyan::Saiyan()
 	{
@@ -17,12 +16,12 @@ namespace sdds
 		m_power = 0;
 		m_super = false;
 		m_level = 0;
-	};
+	}
 	
 	Saiyan::Saiyan(const char* name, int dob, int power)
 	{
 		set(name, dob, power);
-	};
+	}
 
 	// MEMBER FUNCTIONS:
 	void Saiyan::set(const char* name, int dob, int power, int level, bool super)
@@ -40,6 +39,7 @@ namespace sdds
 				delete[] m_name;
 				m_name = nullptr;
 			}
+			// Assign validate values to current object:
 			m_name = new char[strlen(name) + 1];
 			strcpy(m_name, name);
 			m_dob = dob;
@@ -47,13 +47,13 @@ namespace sdds
 			m_super = super;
 			m_level = level;
 		}
-	};
+	}
 	
 	bool Saiyan::isValid() const
 	{
 		bool valid_state = m_name != nullptr && strlen(m_name) > 0 && m_dob < 2020 && m_power > 0;
 		return valid_state;
-	};
+	}
 
 	void Saiyan::display() const
 	{
@@ -83,14 +83,14 @@ namespace sdds
 			cout << "Invalid Saiyan!";
 		}
 		cout << endl;
-	};
+	}
 
 	bool Saiyan::fight(Saiyan& other)
 	{
-
+		// Check both Saiyans for super level and power up accordingly:
 		if (m_super == true)
 		{
-			m_power += int(m_power * (.1 * m_level));
+			m_power += int(m_power * (.1 * m_level));	// Cast an int to avoid possible memory loss.
 		}
 		if (other.m_super == true)
 		{
@@ -99,7 +99,7 @@ namespace sdds
 
 		bool value = m_power > other.m_power;
 		return value;
-	};
+	}
 
 	// DESTRUCTOR:
 	Saiyan::~Saiyan()
@@ -109,6 +109,5 @@ namespace sdds
 			delete[] m_name;	// Deallocate memory of member.
 			m_name = nullptr;
 		}
-	};
-
+	}
 }
